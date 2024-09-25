@@ -1,0 +1,14 @@
+{
+  "name": "delpais.mx",
+  "version": "1.0.0",
+  "description": "From MX.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "México"
+  ],
+  "author": "suiGN",
+  "license": "MIT"
+}
