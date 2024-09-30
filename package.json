@@ -4,7 +4,22 @@
   "description": "From MX.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm:dev:*\"",
+    "dev:api": "node index.js",
+    "dev:gui": "cd gui && vite",
+    "build": "cd gui && vite build",
+    "start": "node index.js",
+    "start:prod": "npm run build && npm run start"
+  },
+  "dependencies": {
+    "concurrently": "^7.0.0",
+    "express": "^4.21.0",
+    "this.gui": "^1.0.13"
+  },
+  "devDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "vite": "^4.0.0"
   },
   "keywords": [
     "México"
