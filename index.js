@@ -21,93 +21,35 @@ palo-azul.com  - squarespace
 paloazul.com.mx  - squarespace
 paloazul.mx  - squarespace
 */
-    // Lógica para redirigir a diferentes secciones según el dominio
-    switch (domain) {
-        case 'delpais.mx':
-            res.redirect('/delpais');
-            break;
-        case 'cafedelpais.com.mx':
-            res.redirect('/cafedelpais');
-            break;
-        case 'cafedelpais.mx':
-            res.redirect('/cafe');
-            break;
-        case 'blackcoffee.mx':
-            res.redirect('/blackcoffee');
-            break;
-        case 'kohi.mx':
-            res.redirect('/kohi');
-            break;
-        case 'abokado.mx':
-            res.redirect('/abokado');
-            break;
-        case 'ilegalmezcal.mx':
-            res.redirect('/mezcal');
-            break;
-        case 'maizdelpais.mx':
-            res.redirect('/maiz');
-            break;
-        case 'maizdelpais.com.mx':
-            res.redirect('/maiz');
-            break;
-        case 'kidneywood.info':
-            res.redirect('/kidneywood');
-            break;
-        case 'palo-azul.com':
-            res.redirect('/paloazul');
-            break;
-        case 'paloazul.com.mx':
-            res.redirect('/paloazul');
-            break;
-        case 'paloazul.mx':
-            res.redirect('/paloazul');
-            break;
-        default:
-            // Redirigir a una página por defecto o mostrar un error si el dominio no es reconocido
-            res.redirect('/not-found');
-            break;
-    }
-});
+// Importar routers para cada dominio
+import routerDelPais from './routes/DelPaisMx/DelPaisMxRoutes';
+import routerCafeDelPais from './routes/CafeDelPais/CafeDelPaisRoutes';
+import routerBlackCoffee from './routes/BlackCoffee/BlackCoffeeRoutes';
+import routerKohi from './routes/Kohi/KohiRoutes';
+import routerAbokado from './routes/AbokadoMx/AbokadoMxRoutes';
+import routerMezcal from './routes/IlegalMezcalMx/IlegalMezcalMxRoutes.js';
+import routerMaizDelPais from './routes/MaizDelPaisMx/MaizDelPaisMxRoutes.js';
+import routerKidneywood from './routes/KidneywoodInfo/KidneywoodInfoRoutes.js';
+import routerPaloAzul from './routes/PaloAzul/PaloAzulRoutes.js';
 
-// Definición de las rutas específicas para cada sección
+// Middleware para manejo de dominios con netgetGateway
+app.use(netgetGateway('delpais.mx', routerDelPais));
+app.use(netgetGateway('cafedelpais.com.mx', routerCafeDelPais));
+app.use(netgetGateway('cafedelpais.mx', routerCafeDelPais));
+app.use(netgetGateway('blackcoffee.mx', routerBlackCoffee));
+app.use(netgetGateway('kohi.mx', routerKohi));
+app.use(netgetGateway('abokado.mx', routerAbokado));
+app.use(netgetGateway('ilegalmezcal.mx', routerMezcal));
+app.use(netgetGateway('maizdelpais.mx', routerMaizDelPais));
+app.use(netgetGateway('maizdelpais.com.mx', routerMaizDelPais));
+app.use(netgetGateway('kidneywood.info', routerKidneywood));
+app.use(netgetGateway('palo-azul.com', routerPaloAzul));
+app.use(netgetGateway('paloazul.com.mx', routerPaloAzul));
+app.use(netgetGateway('paloazul.mx', routerPaloAzul));
 
-app.get('/delpais', (req, res) => {
-    res.send('Bienvenido a DelPaís.mx');
-});
-
-app.get('/cafe', (req, res) => {
-    res.send('Bienvenido al Café DelPaís.mx');
-});
-app.get('/blackCofee', (req, res) => {
-    res.send('Welcome to Black Coffee DelPaís.mx');
-});
-app.get('/kohi', (req, res) => {
-    res.send('Kohi DelPaís.mx');
-});
-
-app.get('/abokado', (req, res) => {
-    res.send('Abokado DelPaís.mx');
-});
-
-app.get('/mezcal', (req, res) => {
-    res.send('Bienvenido al Mezcal DelPaís.mx');
-});
-
-app.get('/maiz', (req, res) => {
-    res.send('Bienvenido al Maíz DelPaís.mx');
-});
-
-app.get('/kidneywood', (req, res) => {
-    res.send('Welcome to Kidneywood Info.');
-});
-
-app.get('/paloazul', (req, res) => {
-    res.send('Bienvenido al Palo Azul DelPaíz.mx');
-});
-
-app.get('/not-found', (req, res) => {
-    // Muestra una página de error o un mensaje de dominio no reconocido
-    res.status(404).send('Dominio no reconocido.');
+// Si no se reconoce el dominio, redirigir a una página 404
+app.use((req, res) => {
+  res.redirect('/not-found');
 });
 
 // Iniciar el servidor en el puerto especificado
