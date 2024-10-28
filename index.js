@@ -1,7 +1,7 @@
 // apps/DelPaís.mx/index.js - DelPaís.mx application that handles multiple domains
 import express from 'express';
 
-import netgetGateway from '../../src/netgetGateway.js';
+import netgetGateway from './netgetGateway.js';
 import routerDelPais from './routes/DelPaisMx/DelPaisMxRoutes.js';
 import routerCafeDelPais from './routes/CafeDelPais/CafeDelPaisRoutes.js';
 import routerKohi from './routes/Kohi/KohiRoutes.js';
