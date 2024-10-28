@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "From MX.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "concurrently \"npm:dev:*\"",
     "dev:api": "node index.js",
